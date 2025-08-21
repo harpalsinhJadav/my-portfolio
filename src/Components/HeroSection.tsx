@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import devPhoto from "../assets/devPhoto.jpg"
 
 export default function HeroSection({ developer }) {
   const scrollToAbout = () => {
@@ -36,7 +37,7 @@ export default function HeroSection({ developer }) {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <img
-                src={developer.profile_image_url}
+                src={devPhoto}
                 alt={developer.full_name}
                 className="w-48 h-48 rounded-full mx-auto shadow-2xl border-4 border-white object-cover"
               />
