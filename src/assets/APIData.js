@@ -21,7 +21,25 @@ const APIData = {
             "created_by": "harpalsinh.jadav99@gmail.com",
             "is_sample": false
         }
-    ]
+    ],
+    "Education":[
+        {
+            "institution": "C.U.Shah University",
+            "degree": "B.Tech (Information Technology)",
+            "field_of_study": "Computer Science",
+            "start_date": "2016",
+            "end_date": "2020",
+            "gpa": "6.8/10",
+            "description": "Completed a comprehensive B.Tech program in Information Technology, focusing on core Computer Science principles such as Data Structures, Algorithms, Database Management, and Software Engineering. Gained strong foundational knowledge in web and mobile technologies, which later evolved into expertise in React Native, modern JavaScript frameworks, and cross-platform app development.",
+            "is_current": false,
+            "id": "68a6a815f5f89cfca3b18a41",
+            "created_date": "2025-08-21T05:01:09.684000",
+            "updated_date": "2025-08-21T05:01:09.684000",
+            "created_by_id": "68a6a750f5f89cfca3b18999",
+            "created_by": "harpalsinh.jadav99@gmail.com",
+            "is_sample": false
+        }
+    ],
 }
 
 export default APIData;

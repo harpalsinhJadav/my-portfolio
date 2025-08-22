@@ -4,9 +4,11 @@ import APIData from "../assets/APIData";
 
 import HeroSection from "../components/HeroSection";
 import AboutSection from  "../components/AboutSection";
+import EducationSection from "../components/EducationSection";
 
 export default function Portfolio() {
   const [developer, setDeveloper] = useState(null);
+  const [education, setEducation] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,8 +18,10 @@ export default function Portfolio() {
   const loadPortfolioData = async () => {
     try {
       const devData = APIData.Developer
+      const eduData = APIData.Education
 
       setDeveloper(devData[0] || null);
+      setEducation(eduData)
     } catch (error) {
       console.error("Error loading portfolio data:", error);
     } finally {
@@ -40,6 +44,7 @@ export default function Portfolio() {
     <div className="min-h-screen">
       <HeroSection developer={developer} />
       <AboutSection developer={developer} />
+      <EducationSection educationList={education} />
     </div>
   );
 }
