@@ -3,6 +3,7 @@ import APIData from "../assets/APIData";
 // import { Developer } from "@/entities/all";
 
 import HeroSection from "../components/HeroSection";
+import AboutSection from  "../components/AboutSection";
 
 export default function Portfolio() {
   const [developer, setDeveloper] = useState(null);
@@ -38,6 +39,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen">
       <HeroSection developer={developer} />
+      <AboutSection developer={developer} />
     </div>
   );
 }
