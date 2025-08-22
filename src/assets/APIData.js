@@ -347,7 +347,140 @@ const APIData = {
             "created_by": "harpalsinh.jadav99@gmail.com",
             "is_sample": false
         }
-    ]
+    ],
+
+    "Skills":[
+  {
+    "name": "React Native",
+    "category": "framework",
+    "proficiency_level": 5,
+    "years_experience": 5,
+    "icon": "smartphone",
+    "id": "68a6a816f5f89cfca3b18a50",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "JavaScript",
+    "category": "programming",
+    "proficiency_level": 5,
+    "years_experience": 6,
+    "icon": "code",
+    "id": "68a6a816f5f89cfca3b18a51",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "TypeScript",
+    "category": "programming",
+    "proficiency_level": 4,
+    "years_experience": 3,
+    "icon": "code",
+    "id": "68a6a816f5f89cfca3b18a52",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Redux",
+    "category": "framework",
+    "proficiency_level": 4,
+    "years_experience": 4,
+    "icon": "database",
+    "id": "68a6a816f5f89cfca3b18a53",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Node.js",
+    "category": "programming",
+    "proficiency_level": 4,
+    "years_experience": 4,
+    "icon": "server",
+    "id": "68a6a816f5f89cfca3b18a54",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Firebase",
+    "category": "tool",
+    "proficiency_level": 4,
+    "years_experience": 3,
+    "icon": "cloud",
+    "id": "68a6a816f5f89cfca3b18a55",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Swift",
+    "category": "programming",
+    "proficiency_level": 3,
+    "years_experience": 2,
+    "icon": "smartphone",
+    "id": "68a6a816f5f89cfca3b18a56",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Kotlin",
+    "category": "programming",
+    "proficiency_level": 3,
+    "years_experience": 2,
+    "icon": "smartphone",
+    "id": "68a6a816f5f89cfca3b18a57",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Team Leadership",
+    "category": "soft_skill",
+    "proficiency_level": 4,
+    "years_experience": 3,
+    "icon": "users",
+    "id": "68a6a816f5f89cfca3b18a58",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  },
+  {
+    "name": "Problem Solving",
+    "category": "soft_skill",
+    "proficiency_level": 5,
+    "years_experience": 6,
+    "icon": "lightbulb",
+    "id": "68a6a816f5f89cfca3b18a59",
+    "created_date": "2025-08-21T05:01:10.050000",
+    "updated_date": "2025-08-21T05:01:10.050000",
+    "created_by_id": "68a6a750f5f89cfca3b18999",
+    "created_by": "harpalsinh.jadav99@gmail.com",
+    "is_sample": false
+  }
+]
 
 
 }
