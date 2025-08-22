@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import APIData from "../assets/APIData";
-// import { Developer } from "@/entities/all";
 
 import HeroSection from "../components/HeroSection";
 import AboutSection from  "../components/AboutSection";
 import EducationSection from "../components/EducationSection";
+import ExperienceSection from "../components/ExperienceSection";
 
 export default function Portfolio() {
   const [developer, setDeveloper] = useState(null);
   const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -19,9 +20,11 @@ export default function Portfolio() {
     try {
       const devData = APIData.Developer
       const eduData = APIData.Education
+      const expData = APIData.Experience
 
       setDeveloper(devData[0] || null);
-      setEducation(eduData)
+      setEducation(eduData);
+      setExperience(expData);
     } catch (error) {
       console.error("Error loading portfolio data:", error);
     } finally {
@@ -45,6 +48,7 @@ export default function Portfolio() {
       <HeroSection developer={developer} />
       <AboutSection developer={developer} />
       <EducationSection educationList={education} />
+      <ExperienceSection experienceList={experience} />
     </div>
   );
 }
