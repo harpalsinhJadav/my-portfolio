@@ -7,7 +7,7 @@
  * @param {string} pageName - The name of the page (e.g., "Portfolio", "Resume")
  * @returns {string} - A clean, lowercase URL path (e.g., "/portfolio")
  */
-export function createPageUrl(pageName) {
+export function createPageUrl(pageName : string) {
   if (!pageName) return "/";
   
   // Normalize page name (e.g., remove spaces, convert to lowercase)
@@ -22,7 +22,7 @@ export function createPageUrl(pageName) {
 }
 
 
-export function timeSince(dateString) {
+export function timeSince(dateString:string) {
   const startDate = new Date(dateString);
   const now = new Date();
 
