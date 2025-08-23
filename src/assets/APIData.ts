@@ -13,7 +13,7 @@ const APIData : APIDataType = {
             "phone": "+91 8128920924",
             "linkedin_url": "https://www.linkedin.com/in/harpalsinh-jadav-049388167/",
             "github_url": "",
-            "website_url": "https://harpalsinhjadav.github.io/my-portfolio/portfolio",
+            "website_url": "https://harpalsinhjadav.github.io/my-portfolio",
             "years_experience": timeSince("2020-01-01"),
             "id": "68a6a815f5f89cfca3b18a3e",
             "created_date": "2025-08-21T05:01:09.578000",
