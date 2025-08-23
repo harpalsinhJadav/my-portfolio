@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { createPageUrl } from "./utils";
+import { createPageUrl } from './utils';
 import { Menu, X } from "lucide-react";
 
 type NavItemType = {
@@ -27,14 +27,9 @@ export default function Layout({ children }: LayoutProps) {
   ];
 
   const scrollToSection = (href: string) => {
-    const currentPath = location.pathname.replace("/my-portfolio", "");
-    if (currentPath !== createPageUrl("Portfolio")) {
-      window.location.href = `${createPageUrl("Portfolio")}${href}`;
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMenuOpen(false);
   };
