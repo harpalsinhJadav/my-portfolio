@@ -24,7 +24,6 @@ export default function Layout({ children }: LayoutProps) {
     { name: "Projects", href: "#projects", type: "scroll" },
     { name: "Skills", href: "#skills", type: "scroll" },
     { name: "Contact", href: "#contact", type: "scroll" },
-    { name: "Resume", href: "Resume", type: "page" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -57,7 +56,10 @@ export default function Layout({ children }: LayoutProps) {
     }
     return (
       <button
-        onClick={() => scrollToSection(item.href)}
+        onClick={() => {
+          console.warn("hred:", item.href)
+         scrollToSection(item.href)
+        }}
         className="text-slate-600 hover:text-amber-500 transition-colors duration-300 font-medium"
       >
         {item.name}

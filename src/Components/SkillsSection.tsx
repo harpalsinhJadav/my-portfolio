@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, Wrench, Users, Lightbulb } from "lucide-react";
+import { Code, Wrench, Users, Lightbulb, Server, BarChart2 } from "lucide-react";
 import type { Skill } from "@/types";
 
 type SkillsSectionProps = {
@@ -10,26 +10,37 @@ type SkillsSectionProps = {
 export default function SkillsSection({ skills }: SkillsSectionProps) {
   if (!skills || skills.length === 0) return null;
 
-  const categoryIcons: Record<string, React.ElementType> = {
-    programming: Code,
-    framework: Code,
-    tool: Wrench,
-    soft_skill: Users,
+  // Updated icons for new categories
+  const categoryIcons: Record<string, React.ElementType> = {    
+    "programming": Code,
+    "core_frameworks_&_libraries": Server,
+    "state_management_&_data_handling": Wrench,
+    "ui_&_styling": Lightbulb,
+    "backend,_api_&_data_integration": Server,
+    "testing_&_quality_assurance": Wrench,
+    "build,_deployment_&_devops": Wrench,
+    "analytics_&_monitoring": BarChart2,
+    "soft_skills_&_leadership": Users,
     other: Lightbulb,
   };
 
+  // Updated colors for new categories
   const categoryColors: Record<string, string> = {
-    programming: "bg-blue-100 text-blue-800",
-    framework: "bg-green-100 text-green-800",
-    tool: "bg-purple-100 text-purple-800",
-    soft_skill: "bg-pink-100 text-pink-800",
-    other: "bg-gray-100 text-gray-800",
+    "programming": "bg-blue-100 text-blue-800",
+    "core_frameworks_&_libraries": "bg-green-100 text-green-800",
+    "state_management_&_data_handling": "bg-purple-100 text-purple-800",
+    "ui_&_styling": "bg-pink-100 text-pink-800",
+    "backend,_api_&_data_integration": "bg-teal-100 text-teal-800",
+    "testing_&_quality_assurance": "bg-yellow-100 text-yellow-800",
+    "build,_deployment_&_devops": "bg-orange-100 text-orange-800",
+    "analytics_&_monitoring": "bg-red-100 text-red-800",
+    "soft_skills_&_leadership": "bg-indigo-100 text-indigo-800",
+    "other": "bg-gray-100 text-gray-800",
   };
 
+  // Group skills by category
   const groupedSkills = skills.reduce<Record<string, Skill[]>>((acc, skill) => {
-    if (!acc[skill.category]) {
-      acc[skill.category] = [];
-    }
+    if (!acc[skill.category]) acc[skill.category] = [];
     acc[skill.category].push(skill);
     return acc;
   }, {});
@@ -100,7 +111,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                     <IconComponent className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-800 capitalize">
-                    {category.replace("_", " ")}
+                    {category.replace(/_/g, " ")}
                   </h3>
                 </div>
 
