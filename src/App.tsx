@@ -1,14 +1,23 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "./utils";
 import { Menu, X } from "lucide-react";
 
+type NavItemType = {
+  name: string;
+  href: string;
+  type: "scroll" | "page";
+};
 
-export default function Layout({ children }) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const location = useLocation();
 
-  const navItems = [
+  const navItems: NavItemType[] = [
     { name: "About", href: "#about", type: "scroll" },
     { name: "Education", href: "#education", type: "scroll" },
     { name: "Experience", href: "#experience", type: "scroll" },
@@ -18,20 +27,19 @@ export default function Layout({ children }) {
     { name: "Resume", href: "Resume", type: "page" },
   ];
 
-  const scrollToSection = (href) => {
-    // If not on the main page, navigate first, then scroll
-    if (location.pathname !== createPageUrl('Portfolio')) {
-      window.location.href = `${createPageUrl('Portfolio')}${href}`;
+  const scrollToSection = (href: string) => {
+    if (location.pathname !== createPageUrl("Portfolio")) {
+      window.location.href = `${createPageUrl("Portfolio")}${href}`;
     } else {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
     setIsMenuOpen(false);
   };
 
-  const NavItem = ({ item }) => {
+  const NavItem: React.FC<{ item: NavItemType }> = ({ item }) => {
     if (item.type === "page") {
       const pageUrl = createPageUrl(item.href);
       const isActive = location.pathname === pageUrl;
@@ -57,8 +65,8 @@ export default function Layout({ children }) {
     );
   };
 
-  const MobileNavItem = ({ item }) => {
-     if (item.type === "page") {
+  const MobileNavItem: React.FC<{ item: NavItemType }> = ({ item }) => {
+    if (item.type === "page") {
       const pageUrl = createPageUrl(item.href);
       const isActive = location.pathname === pageUrl;
       return (
@@ -74,77 +82,76 @@ export default function Layout({ children }) {
       );
     }
     return (
-       <button
+      <button
         onClick={() => scrollToSection(item.href)}
         className="text-left px-4 py-2 text-slate-600 hover:text-amber-500 hover:bg-slate-50 rounded-lg transition-all duration-300"
       >
         {item.name}
       </button>
     );
-  }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <style>
-        {`
-          :root {
-            --primary-navy: #0F172A;
-            --secondary-gray: #64748B;
-            --accent-gold: #F59E0B;
-            --light-bg: #FAFAFA;
-            --white: #FFFFFF;
+      {/* Inline styles */}
+      <style>{`
+        :root {
+          --primary-navy: #0F172A;
+          --secondary-gray: #64748B;
+          --accent-gold: #F59E0B;
+          --light-bg: #FAFAFA;
+          --white: #FFFFFF;
+        }
+
+        * {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+          line-height: 1.6;
+        }
+
+        .gradient-text {
+          background: linear-gradient(135deg, #0F172A 0%, #374151 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .glass-effect {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-animation {
+          animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+
+        .fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
-          
-          * {
-            scroll-behavior: smooth;
-          }
-          
-          body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-            line-height: 1.6;
-          }
-          
-          .gradient-text {
-            background: linear-gradient(135deg, #0F172A 0%, #374151 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-          }
-          
-          .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-          }
-          
-          .floating-animation {
-            animation: floating 3s ease-in-out infinite;
-          }
-          
-          @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-          }
-          
-          .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          
-          @keyframes fadeInUp {
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          
-          .stagger-1 { animation-delay: 0.1s; }
-          .stagger-2 { animation-delay: 0.2s; }
-          .stagger-3 { animation-delay: 0.3s; }
-          .stagger-4 { animation-delay: 0.4s; }
-        `}
-      </style>
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+      `}</style>
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-effect shadow-lg">
@@ -153,7 +160,7 @@ export default function Layout({ children }) {
             <Link to={createPageUrl("Portfolio")} className="text-2xl font-bold gradient-text">
               Portfolio
             </Link>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {navItems.map((item) => (
@@ -184,9 +191,7 @@ export default function Layout({ children }) {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-20">
-        {children}
-      </main>
+      <main className="pt-20">{children}</main>
     </div>
   );
 }

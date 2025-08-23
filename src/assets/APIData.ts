@@ -1,6 +1,7 @@
 import { timeSince } from "../utils";
+import type { APIDataType } from "@/types";
 
-const APIData = {
+const APIData : APIDataType = {
     "Developer": [
         {
             "full_name": "Harpalsinh Jadav",

@@ -2,8 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { GraduationCap, Calendar } from "lucide-react";
+import type { Education } from "@/types/education";
 
-export default function EducationSection({ educationList }) {
+interface EducationSectionProps {
+  educationList: Education[];
+}
+
+export default function EducationSection({ educationList }: EducationSectionProps) {
   if (!educationList || educationList.length === 0) return null;
 
   return (
@@ -35,23 +40,32 @@ export default function EducationSection({ educationList }) {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
                 className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 } flex-col md:gap-16`}
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-amber-500 rounded-full border-4 border-white shadow-lg z-10"></div>
 
                 {/* Content Card */}
-                <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                <div
+                  className={`w-full md:w-5/12 ml-16 md:ml-0 ${
+                    index % 2 === 0 ? "md:text-right" : "md:text-left"
+                  }`}
+                >
                   <div className="glass-effect rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group">
                     {/* Date Badge */}
-                    <div className={`inline-flex items-center gap-2 px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold mb-4 ${
-                      index % 2 === 0 ? 'md:ml-auto' : ''
-                    }`}>
+                    <div
+                      className={`inline-flex items-center gap-2 px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold mb-4 ${
+                        index % 2 === 0 ? "md:ml-auto" : ""
+                      }`}
+                    >
                       <Calendar className="w-4 h-4" />
-                      {format(new Date(education.start_date), "MMM yyyy")} - {
-                        education.is_current ? "Present" : format(new Date(education.end_date), "MMM yyyy")
-                      }
+                      {format(new Date(education.start_date), "MMM yyyy")} -{" "}
+                      {education.is_current
+                        ? "Present"
+                        : education.end_date
+                        ? format(new Date(education.end_date), "MMM yyyy")
+                        : ""}
                     </div>
 
                     {/* Institution */}

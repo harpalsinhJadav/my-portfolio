@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from "react";
 import APIData from "../assets/APIData";
 
-import HeroSection from "../components/HeroSection";
-import AboutSection from  "../components/AboutSection";
-import EducationSection from "../components/EducationSection";
-import ExperienceSection from "../components/ExperienceSection";
-import ProjectsSection from "../components/ProjectsSection";
-import SkillsSection from "../components/SkillsSection";
+import HeroSection from "../Components/HeroSection";
+import AboutSection from "../Components/AboutSection";
+import EducationSection from "../Components/EducationSection";
+import ExperienceSection from "../Components/ExperienceSection";
+import ProjectsSection from "../Components/ProjectsSection";
+import SkillsSection from "../Components/SkillsSection";
+import ContactSection from "../Components/ContactSection";
+
+import type { Developer,Education, Experience, Project, Skill } from "@/types";
 
 export default function Portfolio() {
-  const [developer, setDeveloper] = useState(null);
-  const [education, setEducation] = useState([]);
-  const [experience, setExperience] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [developer, setDeveloper] = useState<Developer | null>(null);
+  const [education, setEducation] = useState<Education[]>([]);
+  const [experience, setExperience] = useState<Experience[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     loadPortfolioData();
   }, []);
 
-  const loadPortfolioData = async () => {
+  const loadPortfolioData = () => {
     try {
-      const devData = APIData.Developer;
-      const eduData = APIData.Education;
-      const expData = APIData.Experience;
-      const projData = APIData.Projects;
-      const skillData = APIData.Skills;
+      const devData = APIData.Developer as Developer[];
+      const eduData = APIData.Education as Education[];
+      const expData = APIData.Experience as Experience[];
+      const projData = APIData.Projects as Project[];
+      const skillData = APIData.Skills as Skill[];
 
       setDeveloper(devData[0] || null);
       setEducation(eduData);
@@ -59,6 +62,7 @@ export default function Portfolio() {
       <ExperienceSection experienceList={experience} />
       <ProjectsSection projects={projects} />
       <SkillsSection skills={skills} />
+      <ContactSection developer={developer} />
     </div>
   );
 }

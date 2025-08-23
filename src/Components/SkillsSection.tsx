@@ -1,27 +1,32 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, Wrench, Users, Lightbulb } from "lucide-react";
+import type { Skill } from "@/types";
 
-export default function SkillsSection({ skills }) {
+type SkillsSectionProps = {
+  skills: Skill[];
+};
+
+export default function SkillsSection({ skills }: SkillsSectionProps) {
   if (!skills || skills.length === 0) return null;
 
-  const categoryIcons = {
+  const categoryIcons: Record<string, React.ElementType> = {
     programming: Code,
     framework: Code,
     tool: Wrench,
     soft_skill: Users,
-    other: Lightbulb
+    other: Lightbulb,
   };
 
-  const categoryColors = {
+  const categoryColors: Record<string, string> = {
     programming: "bg-blue-100 text-blue-800",
-    framework: "bg-green-100 text-green-800", 
+    framework: "bg-green-100 text-green-800",
     tool: "bg-purple-100 text-purple-800",
     soft_skill: "bg-pink-100 text-pink-800",
-    other: "bg-gray-100 text-gray-800"
+    other: "bg-gray-100 text-gray-800",
   };
 
-  const groupedSkills = skills.reduce((acc, skill) => {
+  const groupedSkills = skills.reduce<Record<string, Skill[]>>((acc, skill) => {
     if (!acc[skill.category]) {
       acc[skill.category] = [];
     }
@@ -29,7 +34,7 @@ export default function SkillsSection({ skills }) {
     return acc;
   }, {});
 
-  const SkillBar = ({ skill }) => (
+  const SkillBar: React.FC<{ skill: Skill }> = ({ skill }) => (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -95,7 +100,7 @@ export default function SkillsSection({ skills }) {
                     <IconComponent className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-800 capitalize">
-                    {category.replace('_', ' ')} 
+                    {category.replace("_", " ")}
                   </h3>
                 </div>
 
@@ -113,4 +118,3 @@ export default function SkillsSection({ skills }) {
     </section>
   );
 }
-

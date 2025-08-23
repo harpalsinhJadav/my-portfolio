@@ -1,25 +1,46 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Mail, Phone, ExternalLink } from "lucide-react";
+import { Developer } from "@/types";
 
-export default function AboutSection({ developer }) {
+interface AboutSectionProps {
+  developer: Developer | null;
+}
+
+export default function AboutSection({ developer }: AboutSectionProps) {
   if (!developer) return null;
 
-  const contactItems = [
+  const contactItems: {
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    value?: string;
+    link?: string;
+  }[] = [
     { icon: MapPin, label: "Location", value: developer.location },
-    { icon: Mail, label: "Email", value: developer.email, link: `mailto:${developer.email}` },
-    { icon: Phone, label: "Phone", value: developer.phone, link: `tel:${developer.phone}` }
+    {
+      icon: Mail,
+      label: "Email",
+      value: developer.email,
+      link: developer.email ? `mailto:${developer.email}` : undefined,
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: developer.phone,
+      link: developer.phone ? `tel:${developer.phone}` : undefined,
+    },
   ];
 
   const socialLinks = [
     { name: "LinkedIn", url: developer.linkedin_url },
     { name: "GitHub", url: developer.github_url },
-    { name: "Website", url: developer.website_url }
-  ].filter(link => link.url);
+    { name: "Website", url: developer.website_url },
+  ].filter((link) => link.url) as { name: string; url: string }[];
 
   return (
     <section id="about" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +55,7 @@ export default function AboutSection({ developer }) {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -43,18 +64,18 @@ export default function AboutSection({ developer }) {
             className="space-y-8"
           >
             <div className="prose prose-lg text-slate-600">
-              <p className="text-xl leading-relaxed">
-                {developer.bio}
-              </p>
+              <p className="text-xl leading-relaxed">{developer.bio}</p>
             </div>
 
             {/* Contact Information */}
             <div className="space-y-4">
               {contactItems.map((item, index) => {
                 if (!item.value) return null;
-                
-                const ContactComponent = item.link ? 'a' : 'div';
-                const linkProps = item.link ? { href: item.link } : {};
+
+                const ContactComponent = item.link ? "a" : "div";
+                const linkProps = item.link
+                  ? { href: item.link, target: "_blank", rel: "noopener noreferrer" }
+                  : {};
 
                 return (
                   <motion.div
@@ -72,7 +93,9 @@ export default function AboutSection({ developer }) {
                         <item.icon className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-sm text-slate-500 font-medium">{item.label}</p>
+                        <p className="text-sm text-slate-500 font-medium">
+                          {item.label}
+                        </p>
                         <p className="text-lg font-semibold">{item.value}</p>
                       </div>
                       {item.link && (
@@ -120,11 +143,17 @@ export default function AboutSection({ developer }) {
             <div className="relative w-full h-96 bg-gradient-to-br from-amber-100 to-slate-100 rounded-2xl overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-slate-900/10"></div>
               <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
-              
+
               {/* Floating Elements */}
               <div className="absolute top-8 right-8 w-16 h-16 bg-amber-400 rounded-full opacity-20 floating-animation"></div>
-              <div className="absolute bottom-12 left-8 w-12 h-12 bg-slate-400 rounded-full opacity-30 floating-animation" style={{animationDelay: '1s'}}></div>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-blue-400 rounded-full opacity-15 floating-animation" style={{animationDelay: '2s'}}></div>
+              <div
+                className="absolute bottom-12 left-8 w-12 h-12 bg-slate-400 rounded-full opacity-30 floating-animation"
+                style={{ animationDelay: "1s" }}
+              ></div>
+              <div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-blue-400 rounded-full opacity-15 floating-animation"
+                style={{ animationDelay: "2s" }}
+              ></div>
             </div>
           </motion.div>
         </div>

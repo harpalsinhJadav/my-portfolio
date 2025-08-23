@@ -2,8 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import devPhoto from "../assets/devPhoto.jpg"
+import type { Developer } from '@/types';
 
-export default function HeroSection({ developer }) {
+interface HeroSectionProps {
+  developer: Developer | null;
+}
+
+export default function HeroSection({ developer }: HeroSectionProps) {
   const scrollToAbout = () => {
     const element = document.querySelector('#about');
     if (element) {
@@ -11,7 +16,7 @@ export default function HeroSection({ developer }) {
     }
   };
 
-//   if (!developer) return null;
+  if (!developer) return null;
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-amber-50">

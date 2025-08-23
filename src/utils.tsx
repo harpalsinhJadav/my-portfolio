@@ -1,28 +1,30 @@
-// src/utils.js
+// src/utils.ts
 
 /**
  * Converts a given page name into a proper URL path.
  * Ensures consistent and SEO-friendly URL formatting across the app.
  *
- * @param {string} pageName - The name of the page (e.g., "Portfolio", "Resume")
- * @returns {string} - A clean, lowercase URL path (e.g., "/portfolio")
+ * @param pageName - The name of the page (e.g., "Portfolio", "Resume")
+ * @returns A clean, lowercase URL path (e.g., "/portfolio")
  */
-export function createPageUrl(pageName) {
+export function createPageUrl(pageName: string): string {
   if (!pageName) return "/";
-  
-  // Normalize page name (e.g., remove spaces, convert to lowercase)
+
   const slug = pageName
-    .toString()
     .trim()
     .toLowerCase()
     .replace(/\s+/g, "-"); // replace spaces with hyphens
 
-  // Return URL path
   return `/${slug}`;
 }
 
-
-export function timeSince(dateString) {
+/**
+ * Calculates the time elapsed since the given date.
+ *
+ * @param dateString - The starting date in string format (e.g., "2022-03-01")
+ * @returns A formatted string like "2 years, 3 months, 10 days"
+ */
+export function timeSince(dateString: string): string {
   const startDate = new Date(dateString);
   const now = new Date();
 

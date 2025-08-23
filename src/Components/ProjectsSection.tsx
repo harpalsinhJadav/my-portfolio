@@ -1,21 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Smartphone, MonitorSpeaker } from "lucide-react";
+import { Project } from "@/types";
 
-export default function ProjectsSection({ projects }) {
+type ProjectSectionProps = {
+  projects: Project[];
+};
+
+type ProjectCardProps = {
+  project: Project;
+  featured?: boolean;
+};
+
+export default function ProjectsSection({ projects }: ProjectSectionProps) {
   if (!projects || projects.length === 0) return null;
 
-  const featuredProjects = projects.filter(p => p.is_featured);
-  const otherProjects = projects.filter(p => !p.is_featured);
+  const featuredProjects = projects.filter((p) => p.is_featured);
+  const otherProjects = projects.filter((p) => !p.is_featured);
 
-  const ProjectCard = ({ project, featured = false }) => (
+  const ProjectCard: React.FC<ProjectCardProps> = ({ project, featured = false }) => (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
       className={`glass-effect rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 group ${
-        featured ? 'md:col-span-2' : ''
+        featured ? "md:col-span-2" : ""
       }`}
     >
       {/* Project Image */}
@@ -33,7 +43,7 @@ export default function ProjectsSection({ projects }) {
       <div className="p-8">
         {/* Category Badge */}
         <div className="flex items-center gap-2 mb-4">
-          {project.category === 'mobile' ? (
+          {project.category === "mobile" ? (
             <Smartphone className="w-4 h-4 text-amber-500" />
           ) : (
             <MonitorSpeaker className="w-4 h-4 text-amber-500" />
@@ -44,16 +54,16 @@ export default function ProjectsSection({ projects }) {
         </div>
 
         {/* Title */}
-        <h3 className={`font-bold text-slate-900 mb-4 group-hover:text-amber-600 transition-colors duration-300 ${
-          featured ? 'text-2xl' : 'text-xl'
-        }`}>
+        <h3
+          className={`font-bold text-slate-900 mb-4 group-hover:text-amber-600 transition-colors duration-300 ${
+            featured ? "text-2xl" : "text-xl"
+          }`}
+        >
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="text-slate-600 leading-relaxed mb-6">
-          {project.description}
-        </p>
+        <p className="text-slate-600 leading-relaxed mb-6">{project.description}</p>
 
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-6">
@@ -131,9 +141,7 @@ export default function ProjectsSection({ projects }) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-            Projects
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">Projects</h2>
           <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full"></div>
         </motion.div>
 
@@ -164,4 +172,3 @@ export default function ProjectsSection({ projects }) {
     </section>
   );
 }
-
