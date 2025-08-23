@@ -27,7 +27,8 @@ export default function Layout({ children }: LayoutProps) {
   ];
 
   const scrollToSection = (href: string) => {
-    if (location.pathname !== createPageUrl("Portfolio")) {
+    const currentPath = location.pathname.replace("/my-portfolio", "");
+    if (currentPath !== createPageUrl("Portfolio")) {
       window.location.href = `${createPageUrl("Portfolio")}${href}`;
     } else {
       const element = document.querySelector(href);
