@@ -15,8 +15,7 @@ type ProjectCardProps = {
 export default function ProjectsSection({ projects }: ProjectSectionProps) {
   if (!projects || projects.length === 0) return null;
 
-  const featuredProjects = projects.filter((p) => p.is_featured);
-  const otherProjects = projects.filter((p) => !p.is_featured);
+  const featuredProjects = projects;
 
   const ProjectCard: React.FC<ProjectCardProps> = ({ project, featured = false }) => (
     <motion.div
@@ -146,12 +145,24 @@ export default function ProjectsSection({ projects }: ProjectSectionProps) {
         </motion.div>
 
         {/* Featured Projects */}
-        {featuredProjects.length > 0 && (
+        {/* {featuredProjects.length > 0 && (
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">Featured Projects</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} featured />
+              ))}
+            </div>
+          </div>
+        )} */}
+
+        {/* Other Projects */}
+        {projects.length > 0 && (
+          <div>
+            {/* <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">More Projects</h3> */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </div>
